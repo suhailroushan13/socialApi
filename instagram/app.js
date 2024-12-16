@@ -15,6 +15,9 @@ const PORT = 9001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+app.use(express.static(path.join(__dirname, 'build')));
+
 // Logger setup
 const logFilePath = path.join(__dirname, "logs", "logs.txt");
 const logMessage = async (message) => {

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Post API Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen p-6">
+
+<div class="container mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <h1 class="text-3xl font-bold mb-6 text-center">Twitter Post API Test</h1>
+
+    <form id="tweetForm" class="space-y-4">
+        <div><label for="appKey" class="block">App Key</label>
+            <input type="text" id="appKey" class="w-full px-4 py-2 border rounded-lg" required>
+        </div>
+        <div><label for="appSecret" class="block">App Secret</label>
+            <input type="text" id="appSecret" class="w-full px-4 py-2 border rounded-lg" required>
+        </div>
+        <div><label for="accessToken" class="block">Access Token</label>
+            <input type="text" id="accessToken" class="w-full px-4 py-2 border rounded-lg" required>
+        </div>
+        <div><label for="accessSecret" class="block">Access Secret</label>
+            <input type="text" id="accessSecret" class="w-full px-4 py-2 border rounded-lg" required>
+        </div>
+        <div><label for="tweetText" class="block">Tweet Text</label>
+            <input type="text" id="tweetText" class="w-full px-4 py-2 border rounded-lg" required>
+        </div>
+        <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Submit Tweet</button>
+    </form>
+    <p id="tweetResponse" class="mt-4 text-green-600 font-semibold"></p>
+
+    <hr class="my-8">
+    <h2 class="text-2xl font-bold">How to Test Twitter API in Postman</h2>
+    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+        <li>Open <strong>Postman</strong>.</li>
+        <li>Create a new <strong>POST</strong> request.</li>
+        <li>Enter the API endpoint: <code>https://x.suhail.app/tweet</code>.</li>
+        <li>Select the <strong>Body</strong> tab, choose <strong>raw</strong>, and select <strong>JSON</strong> format.</li>
+        <li>Paste the following JSON payload:
+            <pre class="bg-gray-200 p-4 rounded-lg">
+{
+  "appKey": "YOUR_APP_KEY",
+  "appSecret": "YOUR_APP_SECRET",
+  "accessToken": "YOUR_ACCESS_TOKEN",
+  "accessSecret": "YOUR_ACCESS_SECRET",
+  "tweetText": "Your Tweet Text"
+}
+            </pre>
+        </li>
+        <li>Click <strong>Send</strong> and check the response.</li>
+    </ol>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+document.getElementById('tweetForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const data = {
+        appKey: document.getElementById('appKey').value,
+        appSecret: document.getElementById('appSecret').value,
+        accessToken: document.getElementById('accessToken').value,
+        accessSecret: document.getElementById('accessSecret').value,
+        tweetText: document.getElementById('tweetText').value
+    };
+
+    try {
+        const response = await axios.post('https://x.suhail.app/tweet', data);
+        document.getElementById('tweetResponse').innerText = "Tweet posted successfully!";
+    } catch (error) {
+        document.getElementById('tweetResponse').innerText = "Error posting the tweet!";
+        console.error(error);
+    }
+});
+</script>
+
+</body>
+</html>

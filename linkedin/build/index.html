@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Post API Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen p-6">
+
+<div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+
+    <!-- Left Card: Form Submission -->
+    <div class="p-6 bg-white shadow-lg rounded-lg">
+        <h1 class="text-3xl font-bold mb-6 text-center">LinkedIn Post API Test</h1>
+
+        <h2 class="text-xl font-semibold mb-4">Submit Post Using the Form</h2>
+        <form id="postForm" class="space-y-4">
+            <div>
+                <label for="caption" class="block text-gray-700 font-semibold">Caption</label>
+                <input type="text" id="caption" class="w-full px-4 py-2 border rounded-lg" placeholder="Enter Caption" required>
+            </div>
+            <div>
+                <label for="urn" class="block text-gray-700 font-semibold">URN</label>
+                <input type="text" id="urn" class="w-full px-4 py-2 border rounded-lg" placeholder="Enter URN" required>
+            </div>
+            <div>
+                <label for="token" class="block text-gray-700 font-semibold">Bearer Token</label>
+                <input type="text" id="token" class="w-full px-4 py-2 border rounded-lg" placeholder="Enter Bearer Token" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Submit</button>
+        </form>
+        <p id="responseMessage" class="mt-4 text-green-600 font-semibold"></p>
+    </div>
+
+    <!-- Right Card: Postman Instructions -->
+    <div class="p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-2xl font-bold mb-4">How to Test the API in Postman</h2>
+        <ol class="list-decimal list-inside space-y-2 text-gray-700">
+            <li>Open <strong>Postman</strong>.</li>
+            <li>Create a new <strong>POST</strong> request.</li>
+            <li>Enter the API endpoint: <code>https://linkedin.suhail.app/linkedin</code>.</li>
+            <li>Go to the <strong>Body</strong> tab, select <strong>raw</strong>, and choose <strong>JSON</strong> format.</li>
+            <li>Paste the following JSON payload:
+                <pre class="bg-gray-200 p-4 rounded-lg">
+{
+    "caption": "hello linkedin",
+    "urn": "YOUR URN VALUE",
+    "token": "YOUR BEARER TOKEN"
+}
+                </pre>
+            </li>
+            <li>Click <strong>Send</strong> and check the response.</li>
+        </ol>
+
+        <h2 class="text-xl font-semibold mt-8">How to Get URN and Bearer Token</h2>
+        <ul class="list-disc list-inside space-y-2 text-gray-700">
+            <li>Go to LinkedIn's <strong>Developer Portal</strong> and create an app.</li>
+            <li>Get the <strong>Client ID</strong> and <strong>Client Secret</strong> from the app settings.</li>
+            <li>Use LinkedIn's <strong>Authorization Code Flow</strong>:
+                <ul class="list-disc list-inside pl-6">
+                    <li>Authorize the app with OAuth 2.0 URL.</li>
+                    <li>Obtain the authorization <strong>code</strong> after successful login.</li>
+                    <li>Exchange the <strong>code</strong> for an <strong>access token</strong>.</li>
+                </ul>
+            </li>
+            <li>Use LinkedIn's API to retrieve the <strong>URN</strong> (e.g., `urn:li:person:EJRQrv1Jok`).</li>
+        </ul>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+document.getElementById('postForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const data = {
+        caption: document.getElementById('caption').value,
+        urn: document.getElementById('urn').value,
+        token: document.getElementById('token').value
+    };
+
+    try {
+        const response = await axios.post('https://linkedin.suhail.app/linkedin', data);
+        document.getElementById('responseMessage').innerText = "Post successful!";
+    } catch (error) {
+        document.getElementById('responseMessage').innerText = "Error posting data!";
+        console.error(error);
+    }
+});
+</script>
+
+</body>
+</html>

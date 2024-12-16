@@ -12,6 +12,8 @@ const __dirname = path.dirname(__filename);
 const logFilePath = path.join(__dirname, 'logs', 'logs.txt');
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'build')));
+
 
 const logMessage = (message) => {
   const timestamp = new Date().toISOString();
