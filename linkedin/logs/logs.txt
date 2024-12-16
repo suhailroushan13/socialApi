@@ -1,0 +1,43 @@
+[2024-12-15T20:33:27.728Z] Server running on port 9003
+[2024-12-15T20:34:48.927Z] Server running on port 9003
+[2024-12-15T20:34:51.043Z] Server running on port 9003
+[2024-12-15T20:34:57.647Z] Failed to upload to LinkedIn: Request failed with status code 401
+[2024-12-15T20:35:18.743Z] Server running on port 9003
+[2024-12-15T20:35:21.547Z] Server running on port 9003
+[2024-12-15T20:35:28.117Z] Failed to upload to LinkedIn: Request failed with status code 401
+[2024-12-15T20:55:14.526Z] Failed to upload to LinkedIn: Request failed with status code 401
+[2024-12-15T20:55:26.010Z] Server running on port 9003
+[2024-12-15T20:55:43.505Z] Failed to upload to LinkedIn: Request failed with status code 401
+[2024-12-16T08:39:35.933Z] Server running on port 9003
+[2024-12-16T08:39:42.792Z] Failed to upload to LinkedIn: Request failed with status code 400
+[2024-12-16T08:46:02.848Z] Server running on port 9003
+[2024-12-16T08:46:09.950Z] Failed to upload to LinkedIn: Request failed with status code 400
+[2024-12-16T08:46:25.112Z] Server running on port 9003
+[2024-12-16T08:46:29.366Z] Server running on port 9003
+[2024-12-16T08:46:34.552Z] Uploaded on LinkedIn
+[2024-12-16T08:47:52.320Z] Server running on port 9003
+[2024-12-16T08:47:56.232Z] Server running on port 9003
+[2024-12-16T08:48:04.358Z] Server running on port 9003
+[2024-12-16T08:48:11.895Z] Server running on port 9003
+[2024-12-16T08:48:18.251Z] Server running on port 9003
+[2024-12-16T08:48:24.905Z] Server running on port 9003
+[2024-12-16T08:48:27.830Z] Server running on port 9003
+[2024-12-16T08:49:53.770Z] Server running on port 9003
+[2024-12-16T08:50:26.281Z] Server running on port 9003
+[2024-12-16T08:50:57.421Z] Uploaded on LinkedIn
+[2024-12-16T08:51:55.844Z] Server running on port 9003
+[2024-12-16T08:52:13.423Z] Failed to upload to LinkedIn: Request failed with status code 400
+[2024-12-16T08:52:27.356Z] Server running on port 9003
+[2024-12-16T08:52:31.577Z] Server running on port 9003
+[2024-12-16T08:52:39.822Z] Uploaded on LinkedIn
+[2024-12-16T08:52:46.054Z] Server running on port 9003
+[2024-12-16T08:52:48.801Z] Failed to upload to LinkedIn: Request failed with status code 400
+[2024-12-16T08:52:53.317Z] Server running on port 9003
+[2024-12-16T08:54:55.141Z] Server running on port 9003
+[2024-12-16T08:55:01.881Z] Failed to upload to LinkedIn: Request failed with status code 400
+[2024-12-16T08:55:13.181Z] Server running on port 9003
+[2024-12-16T09:01:58.556Z] Server running on port 9003
+[2024-12-16T09:02:07.480Z] Missing required fields
+[2024-12-16T09:02:17.094Z] Server running on port 9003
+[2024-12-16T09:02:20.650Z] Server running on port 9003
+[2024-12-16T09:02:23.640Z] Uploaded on LinkedIn
