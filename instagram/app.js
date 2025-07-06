@@ -6,17 +6,34 @@ import axios from "axios";
 import { fileURLToPath } from "url";
 import path from "path";
 import { IgApiClient } from "instagram-private-api";
+import cors from "cors";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 9001;
 
+const allowedOrigins = ["http://localhost:9001", "https://insta.suhail.app"];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // allow requests with no origin like mobile apps or curl
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, "build")));
 
 // Logger setup
 const logFilePath = path.join(__dirname, "logs", "logs.txt");

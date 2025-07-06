@@ -1,86 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Post API Test</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram Post API Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex justify-center items-center min-h-screen p-6">
 
-<div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+<body class="bg-gradient-to-br from-gray-100 to-blue-50 min-h-screen flex items-center justify-center p-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
 
-    <!-- Left Card: Form Submission -->
-    <div class="p-6 bg-white shadow-lg rounded-lg">
-        <h1 class="text-3xl font-bold mb-6 text-center">Instagram Post API Test</h1>
+    <!-- Form Card -->
+    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
+      <h1 class="text-3xl font-bold text-center text-blue-700 mb-6">📸 Instagram Post API</h1>
+      <form id="postForm" class="space-y-5">
+        <div>
+          <label for="username" class="block text-sm font-semibold text-gray-700">Username</label>
+          <input type="text" id="username" class="mt-1 w-full px-4 py-2 border rounded-lg" placeholder="Enter Username" required />
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-semibold text-gray-700">Password</label>
+          <input type="password" id="password" class="mt-1 w-full px-4 py-2 border rounded-lg" placeholder="Enter Password" required />
+        </div>
+        <div>
+          <label for="caption" class="block text-sm font-semibold text-gray-700">Caption</label>
+          <input type="text" id="caption" class="mt-1 w-full px-4 py-2 border rounded-lg" placeholder="Enter Caption" required />
+        </div>
+        <div>
+          <label for="imageUrl" class="block text-sm font-semibold text-gray-700">Image URL</label>
+          <input type="url" id="imageUrl" class="mt-1 w-full px-4 py-2 border rounded-lg" placeholder="Enter Image URL (.jpg supported)" required />
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition">Submit Post</button>
+      </form>
 
-        <h2 class="text-xl font-semibold mb-4">Submit Post Using the Form</h2>
-        <form id="postForm" class="space-y-4">
-            <div>
-                <label for="username" class="block text-gray-700 font-semibold">Username</label>
-                <input type="text" id="username" class="w-full px-4 py-2 border rounded-lg" placeholder="Enter Username" required>
-            </div>
-            <div>
-                <label for="password" class="block text-gray-700 font-semibold">Password</label>
-                <input type="password" id="password" class="w-full px-4 py-2 border rounded-lg" placeholder="Enter Password" required>
-            </div>
-            <div>
-                <label for="caption" class="block text-gray-700 font-semibold">Caption</label>
-                <input type="text" id="caption" class="w-full px-4 py-2 border rounded-lg" placeholder="Enter Caption" required>
-            </div>
-            <div>
-                <label for="imageUrl" class="block text-gray-700 font-semibold">Image URL</label>
-                <input type="url" id="imageUrl" class="w-full px-4 py-2 border rounded-lg" placeholder="Enter Image URL" required>
-            </div>
-            <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Submit</button>
-        </form>
-        <p id="responseMessage" class="mt-4 text-green-600 font-semibold"></p>
+      <!-- Loader -->
+      <div id="loader" class="hidden mt-6 flex items-center justify-center gap-2 text-blue-600">
+        <svg class="animate-spin h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+        </svg>
+        <span>Posting to Instagram...</span>
+      </div>
+
+      <!-- Message -->
+      <p id="responseMessage" class="mt-4 font-semibold text-center"></p>
+      <p id="profileLink" class="mt-2 text-center hidden">
+        🔗 <a href="#" id="instaLink" target="_blank" class="text-blue-600 underline">View Instagram Profile</a>
+      </p>
     </div>
 
-    <!-- Right Card: Postman Instructions -->
-    <div class="p-6 bg-white shadow-lg rounded-lg">
-        <h2 class="text-2xl font-bold mb-4">How to Test the API in Postman</h2>
-        <ol class="list-decimal list-inside space-y-2 text-gray-700">
-            <li>Open <strong>Postman</strong>.</li>
-            <li>Create a new <strong>POST</strong> request.</li>
-            <li>Enter the API endpoint: <code>https://insta.suhail.app/insta</code>.</li>
-            <li>Go to the <strong>Body</strong> tab, select <strong>raw</strong>, and choose <strong>JSON</strong> format.</li>
-            <li>Paste the following JSON payload:
-                <pre class="bg-gray-200 p-4 rounded-lg">
+    <!-- Postman Instructions Card -->
+    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
+      <h2 class="text-2xl font-bold text-blue-700 mb-4">📬 Test with Postman</h2>
+      <ol class="list-decimal list-inside text-gray-700 space-y-2">
+        <li>Open <strong>Postman</strong>.</li>
+        <li>Create a new <strong>POST</strong> request.</li>
+        <li>Use endpoint: <code class="bg-gray-100 px-1 py-0.5 rounded">https://insta.suhail.app/insta</code></li>
+        <li>Go to the <strong>Body</strong> tab → Select <strong>raw</strong> → Choose <strong>JSON</strong>.</li>
+        <li>Paste this JSON:
+          <pre class="bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">
 {
-    "username": "YOUR INSTA USERNAME",
-    "password": "YOUR INSTA PASSWORD",
-    "caption": "INSTA CAPTION",
-    "imageUrl": "IMAGE URL .jpg supported"
+  "username": "YOUR INSTA USERNAME",
+  "password": "YOUR INSTA PASSWORD",
+  "caption": "INSTA CAPTION",
+  "imageUrl": "IMAGE URL (.jpg)"
 }
-                </pre>
-            </li>
-            <li>Click <strong>Send</strong> and check the response.</li>
-        </ol>
+          </pre>
+        </li>
+        <li>Click <strong>Send</strong> and observe the response.</li>
+      </ol>
     </div>
-</div>
+  </div>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-document.getElementById('postForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    document.getElementById('postForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
 
-    const data = {
+      const data = {
         username: document.getElementById('username').value,
         password: document.getElementById('password').value,
         caption: document.getElementById('caption').value,
         imageUrl: document.getElementById('imageUrl').value
-    };
+      };
 
-    try {
-        const response = await axios.post('https://insta.suhail.app/insta', data);
-        document.getElementById('responseMessage').innerText = "Post successful!";
-    } catch (error) {
-        document.getElementById('responseMessage').innerText = "Error posting data!";
+      const loader = document.getElementById('loader');
+      const message = document.getElementById('responseMessage');
+      const profileLink = document.getElementById('profileLink');
+      const instaLink = document.getElementById('instaLink');
+
+      loader.classList.remove('hidden');
+      message.innerText = '';
+      profileLink.classList.add('hidden');
+
+      try {
+        const response = await axios.post('http://localhost:9001/insta', data);
+        message.innerText = "✅ Post successful!";
+        message.className = "mt-4 font-semibold text-green-600 text-center";
+
+        instaLink.href = `https://instagram.com/${data.username}`;
+        profileLink.classList.remove('hidden');
+      } catch (error) {
+        message.innerText = "❌ Error posting data!";
+        message.className = "mt-4 font-semibold text-red-600 text-center";
         console.error(error);
-    }
-});
-</script>
-
+      } finally {
+        loader.classList.add('hidden');
+      }
+    });
+  </script>
 </body>
+
 </html>
